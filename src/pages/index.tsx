@@ -1,11 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Container,
-  Input,
-  Button,
-  Text,
-  Grid
-} from "@nextui-org/react";
+import { Container, Input, Button, Text, Grid } from "@nextui-org/react";
 import Jimp from "jimp/es";
 import { Font } from "@jimp/plugin-print";
 
@@ -45,15 +39,21 @@ export default function Home() {
   return (
     <Container>
       <Container sm>
-        <img
-          src={image64 || "Plantilla.jpg"}
-          alt="La chida"
-          style={{
-            display: "block",
-            margin: "16px auto",
-            aspectRatio: "16/9",
-          }}
-        />
+        <a
+          href={image64 || "Plantilla.jpg"}
+          download={image64 ? `${moonText}.jpg` : "Plantilla.jpg"}
+        >
+          <img
+            src={image64 || "Plantilla.jpg"}
+            alt="La chida"
+            style={{
+              display: "block",
+              margin: "16px auto",
+              aspectRatio: "16/9",
+            }}
+          />
+        </a>
+
         <Grid.Container gap={2} wrap="wrap" justify="space-between">
           <Grid xs={12} sm={9}>
             <Input
@@ -65,8 +65,10 @@ export default function Home() {
               onChange={(event) => setMoonText(event.target.value)}
             />
           </Grid>
-          <Grid xs={12} sm={3} justify='center'>
-            <Button onPress={createImage}>Make A Moon!</Button>
+          <Grid xs={12} sm={3} justify="center">
+            <Button auto ghost onPress={createImage}>
+              Make A Moon!
+            </Button>
           </Grid>
         </Grid.Container>
       </Container>

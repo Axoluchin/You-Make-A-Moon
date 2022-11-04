@@ -4,8 +4,7 @@ import {
   Input,
   Button,
   Text,
-  Grid,
-  Spacer,
+  Grid
 } from "@nextui-org/react";
 import Jimp from "jimp/es";
 import { Font } from "@jimp/plugin-print";
@@ -45,7 +44,6 @@ export default function Home() {
 
   return (
     <Container>
-      <Text h1>You Make A Moon</Text>
       <Container sm>
         <img
           src={image64 || "Plantilla.jpg"}

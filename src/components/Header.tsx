@@ -7,7 +7,9 @@ const Header = () => {
   const { setTheme } = useNextTheme();
   const { isDark } = useTheme();
   return (
-    <Navbar isBordered>
+    <Navbar isBordered style={{
+      width: '100%'
+    }}>
       <Navbar.Brand>
         <Text h3 style={{ marginBottom: 0 }}>
           You Make A Moon

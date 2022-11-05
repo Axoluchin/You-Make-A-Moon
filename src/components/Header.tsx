@@ -5,10 +5,13 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Header = () => {
   const { setTheme } = useNextTheme();
-  const { isDark } = useTheme();
+  const { isDark, theme } = useTheme();
   return (
-    <Navbar isBordered style={{
-      width: '100%'
+    <Navbar variant="sticky" style={{
+      width: '100%',
+      borderBottomStyle: 'solid',
+      borderColor: theme?.colors.backgroundContrast.value,
+      borderWidth: 1
     }}>
       <Navbar.Brand>
         <Text h3 style={{ marginBottom: 0 }}>

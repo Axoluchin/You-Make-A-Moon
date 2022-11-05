@@ -1,12 +1,19 @@
-import { useState, useEffect } from "react";
-import { Container, Input, Button, Text, Grid } from "@nextui-org/react";
+import { useState, useEffect, useCallback } from "react";
+import {
+  Container,
+  Input,
+  Button,
+  Grid,
+  Loading,
+} from "@nextui-org/react";
 import Jimp from "jimp/es";
 import { Font } from "@jimp/plugin-print";
 
 export default function Home() {
   const [moonText, setMoonText] = useState("");
-  const [image64, setImage64] = useState<string | null>(null);
   const [moonFont, setMoonFont] = useState<Font>();
+  const [loading, setLoading] = useState(false);
+  const [image64, setImage64] = useState<string | null>(null);
 
   useEffect(() => {
     Jimp.loadFont("./moonGetHeavy/moonGetHeavy32.fnt").then((font) =>
@@ -14,27 +21,31 @@ export default function Home() {
     );
   }, []);
 
-  const createImage = () => {
-    Jimp.read("./Plantilla.jpg").then((photo) => {
-      const maxHeight = photo.getHeight();
-      const maxWidth = photo.getWidth();
-      moonFont &&
-        photo
-          .print(
-            moonFont,
-            0,
-            maxHeight - 128,
-            {
-              text: moonText,
-              alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
-            },
-            maxWidth,
-            maxHeight
-          )
-          .getBase64Async(Jimp.MIME_JPEG)
-          .then((result) => setImage64(result));
-    });
-  };
+  const createImage = useCallback(async () => {
+    setLoading(true);
+    Jimp.read("./Plantilla.jpg")
+      .then((photo) => {
+        const maxHeight = photo.getHeight();
+        const maxWidth = photo.getWidth();
+        moonFont &&
+          photo
+            .print(
+              moonFont,
+              0,
+              maxHeight - 128,
+              {
+                text: moonText,
+                alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
+              },
+              maxWidth,
+              maxHeight
+            )
+            .getBase64Async(Jimp.MIME_JPEG)
+            .then((result) => setImage64(result));
+      })
+      .catch((err: Error) => alert(err.name))
+      .finally(() => setLoading(false));
+  }, [moonFont, moonText]);
 
   return (
     <Container>
@@ -66,8 +77,18 @@ export default function Home() {
             />
           </Grid>
           <Grid xs={12} sm={3} justify="center">
-            <Button auto ghost onPress={createImage}>
-              Make A Moon!
+            <Button
+              auto
+              ghost
+              onPress={createImage}
+              disabled={loading}
+              css={{ px: "$13" }}
+            >
+              {loading ? (
+                <Loading color="currentColor" size="sm" />
+              ) : (
+                "Make A Moon!"
+              )}
             </Button>
           </Grid>
         </Grid.Container>

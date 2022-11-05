@@ -33,7 +33,7 @@ const Header = () => {
           iconOff={<MdLightMode />}
         />
         <Navbar.Item>
-          <Button auto light size="sm">
+          <Button auto light>
             Iniciar Sesión
           </Button>
         </Navbar.Item>

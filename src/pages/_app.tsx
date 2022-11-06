@@ -4,6 +4,8 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import LoginModal from "../components/LoginModal";
+import SingUpModal from "../components/SingUpModal";
 import { lightTheme, darkTheme } from "../utils/themes";
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
@@ -19,6 +21,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
         <Header />
         <Component {...pageProps} />
         <Footer/>
+        <LoginModal/>
+        <SingUpModal/>
       </NextUIProvider>
     </NextThemesProvider>
   )

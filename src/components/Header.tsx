@@ -3,9 +3,14 @@ import { Navbar, Text, Switch, useTheme, Button } from "@nextui-org/react";
 import { useTheme as useNextTheme } from "next-themes";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
+import { useLoginModal, useSingUpModal } from "../hooks/Store";
+
 const Header = () => {
   const { setTheme } = useNextTheme();
   const { isDark, theme } = useTheme();
+  const openLoginModal = useLoginModal(state => state.openModal)
+  const openSingUpModal = useSingUpModal(state => state.openModal)
+
   return (
     <Navbar variant="sticky" style={{
       width: '100%',
@@ -38,12 +43,12 @@ const Header = () => {
           iconOff={<MdLightMode />}
         />
         <Navbar.Item>
-          <Button auto light>
+          <Button auto light onClick={openLoginModal}>
             Iniciar Sesión
           </Button>
         </Navbar.Item>
         <Navbar.Item>
-          <Button auto flat>
+          <Button auto flat onClick={openSingUpModal}>
             Registrarse
           </Button>
         </Navbar.Item>

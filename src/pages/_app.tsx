@@ -20,7 +20,17 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   >
     <NextUIProvider>
       <Head>
+        <meta charSet="utf-8" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+        />
+        <meta name="description" content="Crea lunas con texto y descargalas" />
+        <meta name="keywords" content="YouMakeAMoon LaOdiseaDLMemes" />
         <title>You Make A Moon</title>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icon-192x192.png" />
+        <meta name="theme-color" content="#FFFFFF" />
       </Head>
       <Header />
       <Component {...pageProps} />

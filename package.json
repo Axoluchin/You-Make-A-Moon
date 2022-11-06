@@ -25,5 +25,8 @@
   },
   "browser": {
     "fs": false
+  },
+  "devDependencies": {
+    "webpack": "^5.74.0"
   }
 }

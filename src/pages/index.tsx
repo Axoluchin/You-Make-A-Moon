@@ -1,5 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-import { Container, Input, Button, Grid, Loading } from "@nextui-org/react";
+import {
+  Container,
+  Input,
+  Button,
+  Grid,
+  Loading,
+  Text,
+  Divider,
+  Spacer,
+} from "@nextui-org/react";
 import Jimp from "jimp/es";
 import { Font } from "@jimp/plugin-print";
 
@@ -7,7 +16,7 @@ export default function Home() {
   const [moonText, setMoonText] = useState("");
   const [moonFont, setMoonFont] = useState<Font>();
   const [loading, setLoading] = useState(false);
-  const [image64, setImage64] = useState<string | null>(null);
+  const [image64, setImage64] = useState<string>();
 
   useEffect(() => {
     Jimp.loadFont("./moonGetHeavy/moonGetHeavy32.fnt")
@@ -90,6 +99,26 @@ export default function Home() {
           </Grid>
         </Grid.Container>
       </Container>
+      <Spacer />
+      <Divider />
+      <Spacer />
+      <Text h3>Instrucciones</Text>
+      <Text>- Ingresa cualquier texto en el formulario</Text>
+      <Text>- Da clic en 'Make A Moon!'</Text>
+      <Text>- Espera a que se genere el texto en la imagen</Text>
+      <Text>- Da clic en la imagen para descargarlo automáticamente</Text>
+      <Spacer />
+      <Divider />
+      <Spacer />
+      <Text h3>Versiones</Text>
+      <Text h4>0.1.0 - 06/11/2022</Text>
+      <Text>- Se puede crear lunas con una plantilla y la tipografía de Super Mario Odyssey</Text>
+      <Text>- Ahora se puede dar clic a la imagen para descargar automáticamente la imagen</Text>
+      <Text>- Interruptor para cambiar entre tema oscuro y tema claro</Text>
+      <Text>- La pagina es ahora un PWA, por lo que puede ser instalado como una app en dispositivos inteligentes</Text>
+      <Text>- Adoptado el Desing Sistem de NextUI</Text>
+      <Text>- El proyecto deja de estar en Python con Django a usar Typescript con Next.js</Text>
+      <Text>- Ahora puedes acceder al código fuente del proyecto y apoyar con su desarrollo</Text>
     </Container>
   );
 }
